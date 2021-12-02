@@ -1,0 +1,6 @@
+framework module Pods_RIBsPracticeTests {
+  umbrella header "Pods-RIBsPracticeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
