@@ -21,14 +21,28 @@ final class MainComponent: Component<MainDependency> {
     // TODO: Make sure to convert the variable into lower-camelcase.
 
     let mainViewController: MainViewController
-    
     let userName: String
-
+    
+    let repoIds: [String: Bool]
+    
+    var favoriteRepoIds: [String: Bool] {
+        return repoIds
+    }
+    
+    var mutableFavoriteRepos: FavoriteRepoStreamImpl {
+        return shared({ FavoriteRepoStreamImpl( favoriteRepoIds )})
+    }
+    
     init(dependency: MainDependency,
          userName: String,
-         mainViewController: MainViewController) {
+         mainViewController: MainViewController,
+         favoriteRepoIds: [String]) {
         self.mainViewController = mainViewController
         self.userName = userName
+        
+        var repos: [String: Bool] = [:]
+        favoriteRepoIds.forEach({ repos[$0] = true })
+        self.repoIds = repos
         super.init(dependency: dependency)
     }
 
@@ -38,6 +52,13 @@ final class MainComponent: Component<MainDependency> {
 
 extension MainComponent: SearchListDependency {
     
+//    var favoriteRepoIds: [String] {
+//        return repoIds
+//    }
+//
+//    var mutableFavoriteRepos: FavoriteRepoStreamImpl {
+//        return shared({ FavoriteRepoStreamImpl( favoriteRepoIds )})
+//    }
 }
 
 extension MainComponent: SearchDetailDependency {
@@ -63,8 +84,13 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         
         let component = MainComponent(dependency: dependency,
                                       userName: userName,
-                                      mainViewController: mainViewController)
-        let interactor = MainInteractor()
+                                      mainViewController: mainViewController,
+                                      favoriteRepoIds: ["434380510"])
+        
+        
+        
+//        let interactor = MainInteractor(["33569135", "434380510"])
+        let interactor = MainInteractor(component.mutableFavoriteRepos)
         
         let searchListBuilder = SearchListBuilder(dependency: component)
         let searchDetailBuilder = SearchDetailBuilder(dependency: component)

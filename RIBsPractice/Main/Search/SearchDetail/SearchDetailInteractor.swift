@@ -19,6 +19,8 @@ protocol SearchDetailPresentable: Presentable {
 
 protocol SearchDetailListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func didTapRemoveFavorite(_ repoId: String)
+    func didTapAddFavorite(_ repoId: String)
 }
 
 final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentable>, SearchDetailInteractable, SearchDetailPresentableListener {
@@ -41,5 +43,15 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    
+    
+    func didTapAddFavorite(_ repoId: String) {
+        listener?.didTapAddFavorite(repoId)
+    }
+    
+    func didTapRemoveFavorite(_ repoId: String) {
+        listener?.didTapRemoveFavorite(repoId)
     }
 }

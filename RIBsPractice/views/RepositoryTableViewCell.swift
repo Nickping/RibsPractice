@@ -13,12 +13,15 @@ class RepositoryTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    @IBOutlet weak var favoriteMarkView: UIView!
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
         
         descriptionLabel.text = nil
         fullNameLabel.text = nil
+        
+        favoriteMarkView.backgroundColor = UIColor.clear
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,13 +34,19 @@ class RepositoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func updateUI(_ repository: Repository) {
+    func updateUI(_ repository: Repository, isFavorite: Bool) {
         
         ImageLoader.getImage(from: repository.ownerAvatarUrl) { [weak self] (image) in
             self?.avatarImageView.image = image
         }
         self.fullNameLabel.text = repository.fullName
         self.descriptionLabel.text = repository.name
+        
+        self.favoriteMarkView.backgroundColor = isFavorite ? UIColor.blue : UIColor.clear
+    }
+    
+    func updateFavorite(_ mark: Bool) {
+        self.favoriteMarkView.backgroundColor = mark ? UIColor.blue : UIColor.clear
     }
     
 }

@@ -10,6 +10,10 @@ import RIBs
 protocol SearchListDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
+    
+    var favoriteRepoIds: [String: Bool] { get }
+    
+    var mutableFavoriteRepos: FavoriteRepoStreamImpl { get }
 }
 
 final class SearchListComponent: Component<SearchListDependency> {
@@ -31,9 +35,12 @@ final class SearchListBuilder: Builder<SearchListDependency>, SearchListBuildabl
 
     func build(withListener listener: SearchListListener) -> SearchListRouting {
         let component = SearchListComponent(dependency: dependency)
+     
+        
 //        let viewController = SearchListViewController()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchListViewController") as! SearchListViewController
-        let interactor = SearchListInteractor(presenter: viewController)
+        let interactor = SearchListInteractor(presenter: viewController,
+                                              favoriteRepoStream: component.dependency.mutableFavoriteRepos)
         interactor.listener = listener
         return SearchListRouter(interactor: interactor, viewController: viewController)
     }

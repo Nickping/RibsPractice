@@ -16,14 +16,14 @@ protocol SearchListPresentableListener: AnyObject {
     
     var repoList: Observable<[Repository]> { get }
     var repos: [Repository] { get }
-    
+    var favoriteRepos: [String: Bool] { get }
     
     func search(_ keyword: String)
     func didSelect(_ repository: Repository)
 }
 
 final class SearchListViewController: UIViewController, SearchListPresentable, SearchListViewControllable {
-
+    
     weak var listener: SearchListPresentableListener?
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -39,23 +39,27 @@ final class SearchListViewController: UIViewController, SearchListPresentable, S
         tableView.register(UINib(nibName: "RepositoryTableViewCell", bundle: nil), forCellReuseIdentifier: "RepositoryTableViewCell")
         
         
-        bindInteracotor()
     }
     
-    func bindInteracotor() {
-        listener?.repoList
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (string) in
-                self?.tableView.reloadData()
-            }, onError: { (error) in
-                
-            }, onCompleted: {
-                
-            }, onDisposed: {
-                
-            })
-            .disposed(by: disposeBag)
+    func didGetSearchResult() {
+        tableView.reloadData()
     }
+    
+    func didUpdateFavorite(_ repoId: [String: Bool]) {
+        
+        guard let repos = listener?.repos else { return }
+
+        
+        for (index, repository) in repos.enumerated() {
+            let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? RepositoryTableViewCell
+            
+            cell?.updateFavorite(repoId[String(repository.id)] == true ? true : false)
+        }
+        
+        
+    }
+    
+
     @IBAction func didTapSearchBtn(_ sender: Any) {
         guard let keyword = searchTextField.text,
               !keyword.isEmpty else {
@@ -87,11 +91,14 @@ extension SearchListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryTableViewCell") as? RepositoryTableViewCell,
-              let repos = listener?.repos  else {
+              let repos = listener?.repos,
+              let favorites = listener?.favoriteRepos else {
             return UITableViewCell()
         }
         
-        cell.updateUI(repos[indexPath.row])
+        let repo = repos[indexPath.row]
+        
+        cell.updateUI(repo, isFavorite: favorites[String(repo.id)] == true ? true : false)
         
         return cell
         

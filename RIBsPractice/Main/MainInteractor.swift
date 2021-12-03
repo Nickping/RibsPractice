@@ -24,13 +24,16 @@ protocol MainListener: AnyObject {
 }
 
 final class MainInteractor: Interactor, MainInteractable {
-    
     weak var router: MainRouting?
     weak var listener: MainListener?
 
+    private let stream: MutableFavoriteRepoStream
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init() {}
+    init(_ favoriteStream: MutableFavoriteRepoStream) {
+        self.stream = favoriteStream
+    }
 
     override func didBecomeActive() {
         super.didBecomeActive()
@@ -48,5 +51,13 @@ final class MainInteractor: Interactor, MainInteractable {
         router?.routeToDetail(repository)
     }
     
+    func didTapRemoveFavorite(_ repoId: String) {
+        stream.updateFavoriteRepos(false, repoId)
+    }
+    
+    func didTapAddFavorite(_ repoId: String) {
+        stream.updateFavoriteRepos(true, repoId)
+        
+    }
     
 }

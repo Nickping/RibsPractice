@@ -20,7 +20,8 @@ final class SearchDetailComponent: Component<SearchDetailDependency> {
 // MARK: - Builder
 
 protocol SearchDetailBuildable: Buildable {
-    func build(withListener listener: SearchDetailListener) -> SearchDetailRouting
+    func build(withListener listener: SearchDetailListener,
+               detailRepository: Repository) -> SearchDetailRouting
 }
 
 final class SearchDetailBuilder: Builder<SearchDetailDependency>, SearchDetailBuildable {
@@ -29,10 +30,13 @@ final class SearchDetailBuilder: Builder<SearchDetailDependency>, SearchDetailBu
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: SearchDetailListener) -> SearchDetailRouting {
+    func build(withListener listener: SearchDetailListener,
+               detailRepository: Repository) -> SearchDetailRouting {
         let component = SearchDetailComponent(dependency: dependency)
 //        let viewController = SearchDetailViewController()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchDetailViewController") as! SearchDetailViewController
+        
+        viewController.repository = detailRepository
         let interactor = SearchDetailInteractor(presenter: viewController)
         interactor.listener = listener
         return SearchDetailRouter(interactor: interactor, viewController: viewController)

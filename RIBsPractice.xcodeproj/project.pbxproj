@@ -32,6 +32,9 @@
 		78537D8627570A9000B66404 /* FavoriteListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78537D8227570A9000B66404 /* FavoriteListBuilder.swift */; };
 		78537D8727570A9000B66404 /* FavoriteListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78537D8327570A9000B66404 /* FavoriteListInteractor.swift */; };
 		78537DAE2757686A00B66404 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78537DAD2757686A00B66404 /* MainViewController.swift */; };
+		7867105B275979A0005F73BF /* FavoriteRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78671059275979A0005F73BF /* FavoriteRepoTableViewCell.swift */; };
+		7867105C275979A0005F73BF /* FavoriteRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7867105A275979A0005F73BF /* FavoriteRepoTableViewCell.xib */; };
+		786710612759864D005F73BF /* FavoriteRepoStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786710602759864D005F73BF /* FavoriteRepoStream.swift */; };
 		788334DE2754C9FC002A40D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788334DD2754C9FC002A40D5 /* AppDelegate.swift */; };
 		788334E02754C9FC002A40D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788334DF2754C9FC002A40D5 /* SceneDelegate.swift */; };
 		788334E52754C9FC002A40D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788334E32754C9FC002A40D5 /* Main.storyboard */; };
@@ -94,6 +97,9 @@
 		78537D8227570A9000B66404 /* FavoriteListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListBuilder.swift; sourceTree = "<group>"; };
 		78537D8327570A9000B66404 /* FavoriteListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListInteractor.swift; sourceTree = "<group>"; };
 		78537DAD2757686A00B66404 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		78671059275979A0005F73BF /* FavoriteRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepoTableViewCell.swift; sourceTree = "<group>"; };
+		7867105A275979A0005F73BF /* FavoriteRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteRepoTableViewCell.xib; sourceTree = "<group>"; };
+		786710602759864D005F73BF /* FavoriteRepoStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepoStream.swift; sourceTree = "<group>"; };
 		788334DA2754C9FC002A40D5 /* RIBsPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RIBsPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		788334DD2754C9FC002A40D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		788334DF2754C9FC002A40D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 				784A9DEB2758B87B0041F91F /* RepositoryTableViewCell.swift */,
 				784A9DEC2758B87B0041F91F /* RepositoryTableViewCell.xib */,
 				784A9DF52758BA6A0041F91F /* ImageLoader.swift */,
+				78671059275979A0005F73BF /* FavoriteRepoTableViewCell.swift */,
+				7867105A275979A0005F73BF /* FavoriteRepoTableViewCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				78537D6227570A5E00B66404 /* MainBuilder.swift */,
 				78537D6327570A5E00B66404 /* MainInteractor.swift */,
 				78537DAD2757686A00B66404 /* MainViewController.swift */,
+				786710602759864D005F73BF /* FavoriteRepoStream.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 			files = (
 				788334EA2754C9FC002A40D5 /* LaunchScreen.storyboard in Resources */,
 				788334E72754C9FC002A40D5 /* Assets.xcassets in Resources */,
+				7867105C275979A0005F73BF /* FavoriteRepoTableViewCell.xib in Resources */,
 				788334E52754C9FC002A40D5 /* Main.storyboard in Resources */,
 				784A9DEE2758B87B0041F91F /* RepositoryTableViewCell.xib in Resources */,
 			);
@@ -568,6 +578,7 @@
 				784A9DF62758BA6A0041F91F /* ImageLoader.swift in Sources */,
 				78537D8627570A9000B66404 /* FavoriteListBuilder.swift in Sources */,
 				78537D6427570A5E00B66404 /* MainRouter.swift in Sources */,
+				786710612759864D005F73BF /* FavoriteRepoStream.swift in Sources */,
 				78537D7127570A6F00B66404 /* SearchListInteractor.swift in Sources */,
 				78E4B9DF2754CD5D00D75CF5 /* RootViewController.swift in Sources */,
 				78E4B9DE2754CD5D00D75CF5 /* RootRouter.swift in Sources */,
@@ -584,6 +595,7 @@
 				78537D6527570A5E00B66404 /* MainBuilder.swift in Sources */,
 				78537D7B27570A7B00B66404 /* SearchDetailBuilder.swift in Sources */,
 				78537D6F27570A6F00B66404 /* SearchListViewController.swift in Sources */,
+				7867105B275979A0005F73BF /* FavoriteRepoTableViewCell.swift in Sources */,
 				788334DE2754C9FC002A40D5 /* AppDelegate.swift in Sources */,
 				788334E02754C9FC002A40D5 /* SceneDelegate.swift in Sources */,
 				78537D7027570A6F00B66404 /* SearchListBuilder.swift in Sources */,

@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,6 +36,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vj2-7T-eJb">
+                        <rect key="frame" x="260" y="10" width="40" height="40"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="bh5-0I-v24"/>
+                            <constraint firstAttribute="height" constant="40" id="o74-EL-R61"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="74Y-cx-1zZ" secondAttribute="trailing" id="E5k-PH-vsd"/>
@@ -42,7 +56,9 @@
                     <constraint firstItem="T71-3Z-ZiE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="O3T-Sd-IzE"/>
                     <constraint firstItem="T71-3Z-ZiE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TyA-vi-OAR"/>
                     <constraint firstItem="dcE-qt-Bbi" firstAttribute="top" secondItem="74Y-cx-1zZ" secondAttribute="bottom" constant="5" id="bo3-Cj-G82"/>
+                    <constraint firstAttribute="trailing" secondItem="Vj2-7T-eJb" secondAttribute="trailing" constant="20" id="eDc-Ie-TRI"/>
                     <constraint firstItem="74Y-cx-1zZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ico-OU-V1V"/>
+                    <constraint firstItem="Vj2-7T-eJb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tTX-HR-w31"/>
                     <constraint firstItem="dcE-qt-Bbi" firstAttribute="leading" secondItem="T71-3Z-ZiE" secondAttribute="trailing" constant="20" id="unB-MP-ArC"/>
                     <constraint firstItem="74Y-cx-1zZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="wZx-kJ-8x1"/>
                 </constraints>
@@ -51,9 +67,15 @@
             <connections>
                 <outlet property="avatarImageView" destination="T71-3Z-ZiE" id="v3Q-uf-CqC"/>
                 <outlet property="descriptionLabel" destination="dcE-qt-Bbi" id="AJA-le-lEZ"/>
+                <outlet property="favoriteMarkView" destination="Vj2-7T-eJb" id="kfF-6h-RAr"/>
                 <outlet property="fullNameLabel" destination="74Y-cx-1zZ" id="xAX-oF-kFl"/>
             </connections>
             <point key="canvasLocation" x="69.565217391304358" y="147.99107142857142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

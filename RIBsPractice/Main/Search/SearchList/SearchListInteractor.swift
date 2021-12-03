@@ -15,6 +15,10 @@ protocol SearchListRouting: ViewableRouting {
 protocol SearchListPresentable: Presentable {
     var listener: SearchListPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
+    
+    func didGetSearchResult()
+    
+    func didUpdateFavorite(_ repoId: [String: Bool])
 }
 
 protocol SearchListListener: AnyObject {
@@ -24,6 +28,8 @@ protocol SearchListListener: AnyObject {
 }
 
 final class SearchListInteractor: PresentableInteractor<SearchListPresentable>, SearchListInteractable, SearchListPresentableListener {
+    var favoriteRepos: [String : Bool] = [:]
+    
     weak var router: SearchListRouting?
     weak var listener: SearchListListener?
     
@@ -35,12 +41,33 @@ final class SearchListInteractor: PresentableInteractor<SearchListPresentable>, 
     
     private var repoResults: PublishSubject<[Repository]>
 
+    private var favoriteRepoStream: FavoriteRepoStream
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: SearchListPresentable) {
+    init(presenter: SearchListPresentable,
+         favoriteRepoStream: FavoriteRepoStream) {
+        self.favoriteRepoStream = favoriteRepoStream
         repoResults = PublishSubject<[Repository]>()
         super.init(presenter: presenter)
         presenter.listener = self
+        subscribeFavoriteRepos()
+    }
+    
+    
+    func subscribeFavoriteRepos() {
+        self.favoriteRepoStream.favoriteRepos
+            .subscribe { [weak self] (favorites) in
+                self?.favoriteRepos = favorites
+                self?.presenter.didUpdateFavorite(favorites)
+            } onError: { (error) in
+                
+            } onCompleted: {
+                
+            } onDisposed: {
+                
+            }
+
     }
 
     override func didBecomeActive() {
@@ -57,7 +84,8 @@ final class SearchListInteractor: PresentableInteractor<SearchListPresentable>, 
     func search(_ keyword: String) {
         SearchApi.search(keyword, 0) { [weak self] (repos) in
             self?.repos = repos
-            self?.repoResults.onNext(repos)
+            self?.presenter.didGetSearchResult()
+            
             
         }
     }

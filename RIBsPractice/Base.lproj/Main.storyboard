@@ -49,6 +49,21 @@
             </objects>
             <point key="canvasLocation" x="132" y="115"/>
         </scene>
+        <!--Favorite List View Controller-->
+        <scene sceneID="CNI-IU-iX8">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MIp-Ro-k10" customClass="FavoriteListViewController" customModule="RIBsPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afI-Zv-qKl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TgT-A7-YPA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxg-AB-mwV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="788"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -196,6 +211,24 @@
                     <view key="view" contentMode="scaleToFill" id="z0e-cP-Thf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqF-1g-wkX">
+                                <rect key="frame" x="167" y="133" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="addFavorite"/>
+                                <connections>
+                                    <action selector="didTapFavoriteBtn:" destination="txm-P1-1up" eventType="touchUpInside" id="nPw-Mx-rq3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmF-Du-de0">
+                                <rect key="frame" x="155" y="212" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="removeFavorite"/>
+                                <connections>
+                                    <action selector="didTapRemoveFavoriteBtn:" destination="txm-P1-1up" eventType="touchUpInside" id="JSl-di-G7b"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8qp-pO-ACd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

@@ -56,7 +56,8 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     
     func routeToDetail(_ repository: Repository) {
 //        detachCurrent()
-        let searchDetail = searchDetailBuilder.build(withListener: interactor)
+        let searchDetail = searchDetailBuilder.build(withListener: interactor,
+                                                     detailRepository: repository)
         self.searchDetail = searchDetail
         attachChild(searchDetail)
 
