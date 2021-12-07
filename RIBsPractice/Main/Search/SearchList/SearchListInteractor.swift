@@ -51,34 +51,38 @@ final class SearchListInteractor: PresentableInteractor<SearchListPresentable>, 
         repoResults = PublishSubject<[Repository]>()
         super.init(presenter: presenter)
         presenter.listener = self
-        subscribeFavoriteRepos()
     }
     
     
     func subscribeFavoriteRepos() {
         self.favoriteRepoStream.favoriteRepos
+            .debug()
             .subscribe { [weak self] (favorites) in
                 self?.favoriteRepos = favorites
                 self?.presenter.didUpdateFavorite(favorites)
             } onError: { (error) in
                 
             } onCompleted: {
-                
+                print("completed")
             } onDisposed: {
-                
+                print("disposed")
             }
+            .disposeOnDeactivate(interactor: self)
 
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        subscribeFavoriteRepos()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
     }
+    
+    
 
     
     func search(_ keyword: String) {

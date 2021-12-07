@@ -18,14 +18,16 @@ class SearchApi {
             return
         }
         
+        let session = URLSession(configuration: .default)
         var request = URLRequest(url: url,
                                  cachePolicy: .reloadIgnoringLocalCacheData,
                                  timeoutInterval: 3)
         
+        
         request.httpMethod = "GET"
         print(request)
         DispatchQueue.global(qos: .background).async {
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
+            session.dataTask(with: request) { (data, response, error) in
                 
                 DispatchQueue.main.async {
                     if let err = error {
